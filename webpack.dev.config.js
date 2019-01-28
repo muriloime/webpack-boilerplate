@@ -2,6 +2,7 @@ var path = require('path');
 var commonConfig = require('./webpack.common.config');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var extractCSS = new ExtractTextPlugin('style.css');
+var HtmlWebpackPlugin  = require('html-webpack-plugin')
 
 var output = {
     path: path.resolve(__dirname, 'build'),
@@ -15,9 +16,14 @@ module.exports = Object.assign(commonConfig, {
     module: {
         loaders: commonConfig.module.loaders.concat({
             test: /\.s?css$/,
+            // test: /\.html$/,
             exclude: /(node_modules)/,
             loader: extractCSS.extract('style', 'css?sourceMap!postcss?sourceMap!sass?sourceMap')
         })
     },
-    plugins: commonConfig.plugins.concat(extractCSS)
+    plugins: commonConfig.plugins.concat([
+        extractCSS, 
+        new HtmlWebpackPlugin(),
+    ])
+
 });

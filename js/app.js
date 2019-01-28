@@ -3,6 +3,7 @@ import $ from "jquery";
 import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
 import 'waypoints';
 import 'scrollTo';
+import "../index.html";
 
 /**
  * EXAMPLE JS STARTS
